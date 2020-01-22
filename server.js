@@ -15,12 +15,15 @@ var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
 var configDB = require('./config/database.js');
-
+var compression = require('compression');
+var helmet = require('helmet');
 // configuration ===============================================================
-mongoose.connect(configDB.url); // connect to our database
+var mongoDB = process.env.MONGODB_URI || configDB.url;
+mongoose.connect(mongoDB); // connect to our database
+app.use(helmet());
 
 require('./config/passport')(passport); // pass passport for configuration
-
+app.use(compression()); //Compress all routes
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
