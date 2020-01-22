@@ -14,11 +14,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
-var configDB = require('./config/database.js');
+//var configDB = require('./config/database.js');
 var compression = require('compression');
 var helmet = require('helmet');
 // configuration ===============================================================
-var mongoDB = process.env.MONGODB_URI || configDB.url;
+var mongoDB = process.env.MONGODB_URI;// || configDB.url;
 mongoose.connect(mongoDB); // connect to our database
 app.use(helmet());
 
