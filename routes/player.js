@@ -76,16 +76,27 @@ module.exports = {
     editPlayerPage: (req, res) => {
         let playerId = req.params.id;
         let query = "SELECT * FROM `Proctors` WHERE id = '" + playerId + "' ";
+        //console.log("fishy "+req.user.local.email)
+        
         connection.query(query, (err, result) => { 
             //console.log(result);
             if (err) {
                 return res.status(500).send(err);
             }
-            res.render('edit-player.ejs', {
-                title: "Edit  Proctor"
-                ,proctor: result[0]
-                ,message: ''
-            });
+            if(req.user.local.email=='drewradley@gmail.com'){ 
+                res.render('edit-player.ejs', {
+                    title: "Edit  Proctor"
+                    ,proctor: result[0]
+                    ,message: ''
+                })
+            } else {
+                res.render('edit-student.ejs', {
+                    title: "Edit  Proctor"
+                    ,proctor: result[0]
+                    ,message: ''
+                })
+            }
+            ;
         });
     },
     editPlayer: (req, res) => {

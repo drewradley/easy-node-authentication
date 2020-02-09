@@ -23,7 +23,8 @@ module.exports = function(app, passport) {
             }
             res.render('indexS.ejs', {
                 title: 'Welcome to OOMPH | View Proctors'
-                ,proctors: result
+                ,proctors: result,
+                userEmail: req.user.local.email
             });
         });
     }
@@ -40,7 +41,8 @@ module.exports = function(app, passport) {
             console.log(result)
             res.render('indexS.ejs', {
                 title: 'Welcome to OOMPH | View Proctors'
-                ,proctors: result
+                ,proctors: result,
+                userEmail: req.user.local.email
             });
         });
     }

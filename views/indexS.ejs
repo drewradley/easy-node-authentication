@@ -1,5 +1,5 @@
 <% include partials/header.ejs %>
-<a class="btn btn-primary float-right" href="/add" title="Add a New Player">Add Student/proctors</a>
+<!-- <a class="btn btn-primary float-right" href="/add" title="Add a New Player">Add Student/proctors</a> -->
 
     <div class="table-wrapper">
         <% if (proctors.length > 0) {%>
@@ -98,7 +98,7 @@
                 </tbody>
             </table><hr>
         <% } else { %>
-            <p class="text-center">No proctors found. Go <a href="/add" >here</a> to add proctors.</p>
+            <p class="text-center">No proctors found.</p>
         <% } %>
     </div>
 </div>
