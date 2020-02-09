@@ -83,7 +83,7 @@ module.exports = {
             if (err) {
                 return res.status(500).send(err);
             }
-            if(req.user.local.email=='drewradley@gmail.com'){ 
+            if(req.user.local.email=='drewradley@gmail.com' || req.user.local.email=='juliecmoss@berkeley.edu' || req.user.local.email=='sph.digital.learning@berkeley.edu'){
                 res.render('edit-player.ejs', {
                     title: "Edit  Proctor"
                     ,proctor: result[0]

@@ -13,7 +13,7 @@ module.exports = function(app, passport) {
     // });
     app.get('/profile', isLoggedIn, function(req, res) {
         console.log(req.user.local.email)
-        if(req.user.local.email=='drewradley@gmail.com'){
+        if(req.user.local.email=='drewradley@gmail.com' || req.user.local.email=='juliecmoss@berkeley.edu' || req.user.local.email=='sph.digital.learning@berkeley.edu'){
         let query = "SELECT * FROM `Proctors` ORDER BY id ASC"; // query database to get all the Proctors
 
         // execute query
