@@ -17,7 +17,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
-var configDB = require('./config/database.js');
+//var configDB = require('./config/database.js'); //REMOVE FOR PRODUCTION
 var compression = require('compression');
 var helmet = require('helmet');
 
@@ -37,7 +37,9 @@ require('dotenv').config({ path: '.env.local' });
   app.use(fileUpload()); // configure fileupload
 
 // configuration ===============================================================
-var mongoDB = process.env.MONGODB_URI || configDB.url;
+//var mongoDB = process.env.MONGODB_URI || configDB.url; //REMOVE FOR PRODUCTION
+var mongoDB = process.env.MONGODB_URI; //REMOVE FOR TEST
+
 mongoose.connect(mongoDB); // connect to our database
 app.use(helmet());
 
