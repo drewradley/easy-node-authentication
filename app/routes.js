@@ -8,10 +8,45 @@ module.exports = function(app, passport) {
     });
 
     // PROFILE SECTION =========================
+    // app.get('/profile', function(req, res) {
+    //     res.render('index.ejs');
+    // });
     app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
-            user : req.user
+        console.log(req.user.local.email)
+        if(req.user.local.email=='drewradley@gmail.com'){
+        let query = "SELECT * FROM `Proctors` ORDER BY id ASC"; // query database to get all the Proctors
+
+        // execute query
+        connection.query(query, (err, result) => {
+            if (err) {
+                res.redirect('/');
+            }
+            res.render('indexS.ejs', {
+                title: 'Welcome to OOMPH | View Proctors'
+                ,proctors: result
+            });
         });
+    }
+    else 
+    {
+        let query = "SELECT * FROM `Proctors` WHERE `Proctors`.`studentEmail` = '" + req.user.local.email + "'"; // query database to get all the Proctors
+
+        console.log(query)
+        // execute query
+        connection.query(query, (err, result) => {
+            if (err) {
+                res.redirect('/');
+            }
+            console.log(result)
+            res.render('indexS.ejs', {
+                title: 'Welcome to OOMPH | View Proctors'
+                ,proctors: result
+            });
+        });
+    }
+        // res.render('profile.ejs', {
+        //     user : req.user
+        // });
     });
 
     // LOGOUT ==============================
@@ -152,7 +187,7 @@ module.exports = function(app, passport) {
         user.local.email    = undefined;
         user.local.password = undefined;
         user.save(function(err) {
-            res.redirect('/profile');
+            res.redirect('/');// /profile
         });
     });
 
