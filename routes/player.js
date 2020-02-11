@@ -84,7 +84,7 @@ module.exports = {
     editPlayerPage: (req, res) => {
         let playerId = req.params.id;
         let query = "SELECT * FROM `Proctors` WHERE id = '" + playerId + "' ";
-        //console.log("fishy "+req.user.local.email)
+        console.log("fishy "+playerId)
         
         connection.query(query, (err, result) => { 
             //console.log(result);
@@ -158,15 +158,19 @@ module.exports = {
     },
     deletePlayer: (req, res) => {
         let playerId = req.params.id;
-       // let getImageQuery = 'SELECT image from `players` WHERE id = "' + playerId + '"';
-        let deleteUserQuery = 'DELETE FROM Proctors WHERE id = "' + playerId + '"';
-        connection.query(deleteUserQuery, (err, result) => {
-            if (err) {
-                return res.status(500).send(err);
-            }
-            res.redirect('/');
-        });
-        
+        console.log("req.params.id")
+        console.log(req.params)
+        if(req.user.local.email=='drewradley@gmail.com' || req.user.local.email=='juliecmoss@berkeley.edu' || req.user.local.email=='sph.digital.learning@berkeley.edu'){
+
+        // let getImageQuery = 'SELECT image from `players` WHERE id = "' + playerId + '"';
+            let deleteUserQuery = 'DELETE FROM Proctors WHERE id = "' + playerId + '"';
+            connection.query(deleteUserQuery, (err, result) => {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                res.redirect('/profile');
+            });
+        } 
     }
 };
 // const fs = require('fs');
