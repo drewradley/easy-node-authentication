@@ -48,7 +48,7 @@ module.exports = {
         //let fileExtension = uploadedFile.mimetype.split('/')[1];
        // image_name = "username + '.' + fileExtension";
 
-        let usernameQuery = "SELECT * FROM `Proctors` WHERE user_name = '" + username + "'";
+        let usernameQuery = "SELECT * FROM `Proctors` WHERE studentEmail = '" + username + "'";
 
         connection.query(usernameQuery, (err, result) => {
             if (err) {
