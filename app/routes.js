@@ -28,24 +28,24 @@ module.exports = function(app, passport) {
             });
         });
     }
-    else 
-    {
-        let query = "SELECT * FROM `Proctors` WHERE `Proctors`.`studentEmail` = '" + req.user.local.email + "'"; // query database to get all the Proctors
+        else 
+        {
+            let query = "SELECT * FROM `Proctors` WHERE `Proctors`.`studentEmail` = '" + req.user.local.email + "'"; // query database to get all the Proctors
 
-        console.log(query)
-        // execute query
-        connection.query(query, (err, result) => {
-            if (err) {
-                res.redirect('/');
-            }
-            console.log(result)
-            res.render('indexS.ejs', {
-                title: 'Welcome to OOMPH | View Proctors'
-                ,proctors: result,
-                userEmail: req.user.local.email
+            //console.log(query)
+            // execute query
+            connection.query(query, (err, result) => {
+                if (err) {
+                    res.redirect('/');
+                }
+                //console.log(result)
+                res.render('indexS.ejs', {
+                    title: 'Welcome to OOMPH | View Proctors'
+                    ,proctors: result,
+                    userEmail: req.user.local.email
+                });
             });
-        });
-    }
+        }
         // res.render('profile.ejs', {
         //     user : req.user
         // });

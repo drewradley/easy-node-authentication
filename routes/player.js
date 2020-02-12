@@ -87,7 +87,7 @@ module.exports = {
         console.log("fishy "+playerId)
         
         connection.query(query, (err, result) => { 
-            //console.log(result);
+            console.log(result);
             if (err) {
                 return res.status(500).send(err);
             }
@@ -130,16 +130,31 @@ module.exports = {
         let position = req.body.position;
         let number = req.body.number;
 
-        let query = "UPDATE `Proctors` SET `studentName` = '" + studentName + "', `studentEmail` = '" + studentEmail + "', `studentAccommodations` = '" + studentAccommodations + "', `StudentCourse1` = '" + StudentCourse1 + "', `StudentCourse2` = '" + StudentCourse2 + "', `ActiveProctor` = '" + ActiveProctor 
-            + "', `Proctor1fullname` = '" + Proctor1fullname + "', `Proctor1institution` = '" + Proctor1institution + "', `Proctor1email` = '" + Proctor1email + "', `Proctor1phone` = '" + Proctor1phone + "', `Proctor1Relationship` = '" + Proctor1Relationship
-            + "', `Proctor2fullname` = '" + Proctor2fullname + "', `Proctor2institution` = '" + Proctor2institution + "', `Proctor2email` = '" + Proctor2email + "', `Proctor2phone` = '" + Proctor2phone + "', `Proctor2Relationship` = '" + Proctor2Relationship 
+        console.log(req.user.local.email);
+        if(req.user.local.email=='drewradley@gmail.com' || req.user.local.email=='juliecmoss@berkeley.edu' || req.user.local.email=='sph.digital.learning@berkeley.edu'){
+
+            let query = "UPDATE `Proctors` SET `studentName` = '" + studentName + "', `studentEmail` = '" + studentEmail + "', `studentAccommodations` = '" + studentAccommodations + "', `StudentCourse1` = '" + StudentCourse1 + "', `StudentCourse2` = '" + StudentCourse2 + "', `ActiveProctor` = '" + ActiveProctor 
+                + "', `Proctor1fullname` = '" + Proctor1fullname + "', `Proctor1institution` = '" + Proctor1institution + "', `Proctor1email` = '" + Proctor1email + "', `Proctor1phone` = '" + Proctor1phone + "', `Proctor1Relationship` = '" + Proctor1Relationship
+                + "', `Proctor2fullname` = '" + Proctor2fullname + "', `Proctor2institution` = '" + Proctor2institution + "', `Proctor2email` = '" + Proctor2email + "', `Proctor2phone` = '" + Proctor2phone + "', `Proctor2Relationship` = '" + Proctor2Relationship 
+                + "' WHERE `Proctors`.`id` = '" + playerId + "'";
+                connection.query(query, (err, result) => {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    res.redirect('/profile');
+                });
+        } else {
+
+            let query = "UPDATE `Proctors` SET `StudentCourse1` = '" + StudentCourse1 + "', `StudentCourse2` = '" + StudentCourse2 + "', `ActiveProctor` = '" + ActiveProctor 
             + "' WHERE `Proctors`.`id` = '" + playerId + "'";
-        connection.query(query, (err, result) => {
-            if (err) {
-                return res.status(500).send(err);
-            }
-            res.redirect('/profile');
-        });
+            connection.query(query, (err, result) => {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                res.redirect('/profile');
+            });
+        }
+        
     },
     updateStudent: (req, res) => {
         var studentName=req.body.SFN_input;

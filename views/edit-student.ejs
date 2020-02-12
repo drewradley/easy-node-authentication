@@ -1,28 +1,29 @@
 <% include partials/header.ejs %>
 <div class="container">
-    
+    <% if (message) { %>
+        <p class="text-center text-danger"><%= message %></p>
+    <% } %>
 
     <% if (proctor) { %>
         <form class="add-player-form" action="" method="post" enctype="multipart/form-data">
             <div >
                 <div class="form-group">
                     <label for="exampleInputSFN">Student Name (last, first)</label>
-                    <input disabled type="text" class="form-control" name="SFN_input" id="SFN-input" value="<%= proctor.studentName %>">
+                    <input disabled type="text" class="form-control" name="SFN_input" id="SFN-input" value="<%= proctor.studentName %>" >
                   </div>
                   <div class="form-group">
                     <label for="exampleInputSE">Student Email address</label>
-                    <input disabled type="email" class="form-control" name="SE_input" id="SE-input" value="<%= proctor.studentEmail %>">
+                    <input  disabled type="email" class="form-control" name="SE_input" id="SE-input" value="<%= proctor.studentEmail %>">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputSA">Notes</label>
-                    <input  disabled type="text" class="form-control" name="SA_input" id="SA-input" value="<%= proctor.studentAccommodations %>">
+                    <input disabled  type="text" class="form-control" name="SA_input" id="SA-input" value="<%= proctor.studentAccommodations %>">
                   </div>
                   <div class="form-group">
                     <label for="Course1">Course 1: </label>
                 <select name="SCC1_input" id="course1" >
                   <option value="<%= proctor.StudentCourse1 %>"><%= proctor.StudentCourse1 %></option>
                   <option value="NoCourse">No Course</option>
-
                   <option value="PHW200E">PHW200E: Health Policy and Management</option>
                     <option value="PHW200F">PHW200F: Intro to Environmental Health Science</option>
                     <option value="PHW200G">PHW200G: Health and Social Behavior</option>
@@ -125,22 +126,23 @@
    
                 </select>
               </div>
-              <div class="form-group">
-                <label for="ActiveProctor">Active Proctor: </label>
-
-                <select name="ActiveProctor" id="ActiveProctor" >
-                    <option selected value="<%= proctor.ActiveProctor %>"><%= proctor.ActiveProctor %></option>
-
-                  <option value="<%= proctor.Proctor1fullname %>"><%= proctor.Proctor1fullname %></option>
-                  <option value="<%= proctor.Proctor2fullname %>"><%= proctor.Proctor2fullname %></option>
-                    
-   
-                </select>
-              </div> <!-- <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="exampleInputSCC">Student Course 2</label>
                     <input type="text" class="form-control" name="SCC2_input" id="SCC2-input" placeholder="Student Course 2">
                   </div> -->
                   <h4>Proctor Information</h4>
+                  <div class="form-group">
+                    <label for="ActiveProctor">Active Proctor: </label>
+    
+                    <select name="ActiveProctor" id="ActiveProctor" >
+                        <option selected value="<%= proctor.ActiveProctor %>"><%= proctor.ActiveProctor %></option>
+    
+                      <option value="<%= proctor.Proctor1fullname %>"><%= proctor.Proctor1fullname %></option>
+                      <option value="<%= proctor.Proctor2fullname %>"><%= proctor.Proctor2fullname %></option>
+                        
+       
+                    </select>
+                  </div>
             <div class="form-group">
             <label for="exampleInputProctorName1">Proctor 1 full name</label>
                 <input  disabled type="text" class="form-control" name="PN1_input" id="PN1-input" value="<%= proctor.Proctor1fullname %>">
@@ -148,12 +150,12 @@
 
           <div class="form-group">
             <label for="exampleInputPI">Proctor 1 institution</label>
-                <input disabled  type="text" class="form-control" name="PI1_input" id="PI1-input" value="<%= proctor.Proctor1institution %>">
+                <input  disabled type="text" class="form-control" name="PI1_input" id="PI1-input" value="<%= proctor.Proctor1institution %>">
               </div> 
               
           <div class="form-group">
             <label for="exampleInputProctorEmail">Proctor 1 institution email address</label>
-                <input disabled  type="text" class="form-control" name="PE1_input" id="PE1-input" value="<%= proctor.Proctor1email %>">
+                <input  disabled type="text" class="form-control" name="PE1_input" id="PE1-input" value="<%= proctor.Proctor1email %>">
               </div> 
 
           <div class="form-group">
@@ -188,11 +190,11 @@
     
               <div class="form-group">
                 <label for="exampleInputProctorPhone">Proctor 2 institution phone number</label>
-                    <input  disabled type="text" class="form-control" name="PP2_input" id="PP2-input" value="<%= proctor.Proctor2phone %>">
+                    <input disabled  type="text" class="form-control" name="PP2_input" id="PP2-input" value="<%= proctor.Proctor2phone %>">
                   </div> 
                   <div class="form-group">
                       <label for="exampleInputProctorRelationship">Proctor 2 Relationship: </label>
-                  <select disabled  name="PP2_type" id="PP2-type" >
+                  <select  disabled name="PP2_type" id="PP2-type" >
                     <option selected value="<%= proctor.Proctor2Relationship %>"><%= proctor.Proctor2Relationship %></option>
 
                     <option value="Professional proctor">Professional proctor</option>
@@ -200,8 +202,9 @@
                     <option value="Librarian">Librarian</option>
                     <option value="Doctor">Doctor</option>
                     <option value="Human Resources Manager">Human Resources Manager</option>
-                  </select disabled>
+                  </select>
                 </div>
+                
                 <!-- <div class="form-group col-md-4">
                     <label for="first-name">Student Name</label>
                     <input type="text" class="form-control" name="first_name" id="first-name" value="<%= proctor.studentName %>" required>
@@ -244,7 +247,7 @@
             <button type="submit" class="btn btn-success float-right">Update</button>
         </form>
     <% } else { %>
-        <p class="text-center">Not Found.</p>
+        <p class="text-center">Student Email Not Found. </p>
     <% } %>
 </div>
 </div>
