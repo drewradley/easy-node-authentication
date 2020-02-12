@@ -75,7 +75,7 @@ module.exports = {
                     if (err) {
                         return res.status(500).send(err);
                     }
-                    res.redirect('/');
+                    res.redirect('/profile');
                 });
                 
             }
@@ -138,7 +138,7 @@ module.exports = {
             if (err) {
                 return res.status(500).send(err);
             }
-            res.redirect('/');
+            res.redirect('/profile');
         });
     },
     updateStudent: (req, res) => {
@@ -153,7 +153,7 @@ module.exports = {
             if (err) {
                 return res.status(500).send(err);
             }
-            res.redirect('/');
+            res.redirect('/profile');
         });
     },
     deletePlayer: (req, res) => {

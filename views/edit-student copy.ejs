@@ -23,7 +23,8 @@
                     <label for="Course1">Course 1: </label>
                 <select name="SCC1_input" id="course1" >
                   <option value="<%= proctor.StudentCourse1 %>"><%= proctor.StudentCourse1 %></option>
-                  <option value="PHW200E">PHW200E: Health Policy and Management
+                  <option value="NoCourse">No Course</option>
+                  <option value="PHW200E">PHW200E: Health Policy and Management</option>
                     <option value="PHW200F">PHW200F: Intro to Environmental Health Science</option>
                     <option value="PHW200G">PHW200G: Health and Social Behavior</option>
                     <option value="PHW142">PHW142: Introduction to Probability and Statistics</option>
@@ -78,7 +79,9 @@
                     <label for="Course1">Course 1: </label>
                 <select name="SCC2_input" id="course1" >
                     <option value="<%= proctor.StudentCourse2 %>"><%= proctor.StudentCourse2 %></option>
-                    <option value="PHW200E">PHW200E: Health Policy and Management
+                    <option value="NoCourse">No Course</option>
+
+                    <option value="PHW200E">PHW200E: Health Policy and Management</option>
                     <option value="PHW200F">PHW200F: Intro to Environmental Health Science</option>
                     <option value="PHW200G">PHW200G: Health and Social Behavior</option>
                     <option value="PHW142">PHW142: Introduction to Probability and Statistics</option>
@@ -242,7 +245,7 @@
                     </select>
                 </div> -->
             </div>
-            <button type="submit" class="btn btn-success float-right">Update proctor</button>
+            <button type="submit" class="btn btn-success float-right">Update</button>
         </form>
     <% } else { %>
         <p class="text-center">Student Email Not Found. </p>

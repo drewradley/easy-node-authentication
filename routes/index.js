@@ -1,7 +1,7 @@
 //routes index!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 module.exports = {
     getHomePage: (req, res) => {
-        let query = "SELECT * FROM `Proctors` ORDER BY id ASC"; // query database to get all the Proctors
+        let query = "SELECT * FROM `Proctors` ORDER BY studentName ASC"; // query database to get all the Proctors
 
         // execute query
         connection.query(query, (err, result) => {

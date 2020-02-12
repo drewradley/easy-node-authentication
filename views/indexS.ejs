@@ -40,7 +40,7 @@
                 <tbody>
                     <% proctors.forEach((proctor, index) => { %>
                         <tr>
-                            <th scope="row"><a href="/edit/<%= proctor.id %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Edit</a></th>
+                            <th scope="row"><a href="/edit/<%= proctor.id %>" rel="noopener" class="btn btn-sm btn-success">Edit</a></th>
                             <td><%= proctor.studentName %></td>
                             <td><%= proctor.studentEmail %></td>
                             <td><%= proctor.studentAccommodations %></td>
