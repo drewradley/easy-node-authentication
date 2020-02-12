@@ -142,19 +142,51 @@ module.exports = {
         });
     },
     updateStudent: (req, res) => {
+        var studentName=req.body.SFN_input;
+        var studentEmail =req.body.SE_input;
+        var studentAccommodations=req.body.SA_input;
         var StudentCourse1=req.body.SCC1_input;
         var StudentCourse2=req.body.SCC2_input;
+        var Proctor1fullname=req.body.PN1_input;
+        var Proctor1institution=req.body.PI1_input;
+        var Proctor1email=req.body.PE1_input;
+        var Proctor1phone=req.body.PP1_input;
+        var Proctor1Relationship=req.body.PP1_type;
+        var Proctor2fullname=req.body.PN2_input;
+        var Proctor2institution=req.body.PI2_input;
+        var Proctor2email=req.body.PE2_input;
+        var Proctor2phone=req.body.PP2_input;
+        var Proctor2Relationship=req.body.PP2_type;
         var ActiveProctor = req.body.ActiveProctor;
-        let studentEmail = req.userContext.userinfo.preferred_username;
-        console.log(req.userContext.userinfo.preferred_username)
-        let query = "UPDATE `Proctors` SET  `StudentCourse1` = '" + StudentCourse1 + "', `StudentCourse2` = '" + StudentCourse2 + "', `ActiveProctor` = '" + ActiveProctor 
-            + "' WHERE `Proctors`.`studentEmail` = '" + studentEmail + "'";
+        let playerId = req.params.id;
+        let first_name = req.body.first_name;
+        let last_name = req.body.last_name;
+        let position = req.body.position;
+        let number = req.body.number;
+
+        let query = "UPDATE `Proctors` SET `studentName` = '" + studentName + "', `studentEmail` = '" + studentEmail + "', `studentAccommodations` = '" + studentAccommodations + "', `StudentCourse1` = '" + StudentCourse1 + "', `StudentCourse2` = '" + StudentCourse2 + "', `ActiveProctor` = '" + ActiveProctor 
+            + "', `Proctor1fullname` = '" + Proctor1fullname + "', `Proctor1institution` = '" + Proctor1institution + "', `Proctor1email` = '" + Proctor1email + "', `Proctor1phone` = '" + Proctor1phone + "', `Proctor1Relationship` = '" + Proctor1Relationship
+            + "', `Proctor2fullname` = '" + Proctor2fullname + "', `Proctor2institution` = '" + Proctor2institution + "', `Proctor2email` = '" + Proctor2email + "', `Proctor2phone` = '" + Proctor2phone + "', `Proctor2Relationship` = '" + Proctor2Relationship 
+            + "' WHERE `Proctors`.`id` = '" + playerId + "'";
         connection.query(query, (err, result) => {
             if (err) {
                 return res.status(500).send(err);
             }
             res.redirect('/profile');
         });
+        // var StudentCourse1=req.body.SCC1_input;
+        // var StudentCourse2=req.body.SCC2_input;
+        // var ActiveProctor = req.body.ActiveProctor;
+        // let studentEmail = req.userContext.userinfo.preferred_username;
+        // console.log(req.userContext.userinfo.preferred_username)
+        // let query = "UPDATE `Proctors` SET  `StudentCourse1` = '" + StudentCourse1 + "', `StudentCourse2` = '" + StudentCourse2 + "', `ActiveProctor` = '" + ActiveProctor 
+        //     + "' WHERE `Proctors`.`studentEmail` = '" + studentEmail + "'";
+        // connection.query(query, (err, result) => {
+        //     if (err) {
+        //         return res.status(500).send(err);
+        //     }
+        //     res.redirect('/profile');
+        // });
     },
     deletePlayer: (req, res) => {
         let playerId = req.params.id;
