@@ -147,7 +147,7 @@
                     <label for="ActiveProctor2">Active Proctor (2nd course): </label>
     
                     <select name="ActiveProctor2" id="ActiveProctor2" >
-                        <option selected value="<%= proctor.ActiveProctor %>"><%= proctor.ActiveProctor %></option>
+                        <option selected value="<%= proctor.ActiveProctor2 %>"><%= proctor.ActiveProctor2 %></option>
                         <option value="No Course">No Course</option>
                       <option value="<%= proctor.Proctor1fullname %>"><%= proctor.Proctor1fullname %></option>
                       <option value="<%= proctor.Proctor2fullname %>"><%= proctor.Proctor2fullname %></option>
