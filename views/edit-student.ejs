@@ -132,11 +132,23 @@
                   </div> -->
                   <h4>Proctor Information</h4>
                   <div class="form-group">
-                    <label for="ActiveProctor">Active Proctor: </label>
+                    <label for="ActiveProctor">Active Proctor (1st course): </label>
     
                     <select name="ActiveProctor" id="ActiveProctor" >
                         <option selected value="<%= proctor.ActiveProctor %>"><%= proctor.ActiveProctor %></option>
     
+                      <option value="<%= proctor.Proctor1fullname %>"><%= proctor.Proctor1fullname %></option>
+                      <option value="<%= proctor.Proctor2fullname %>"><%= proctor.Proctor2fullname %></option>
+                        
+       
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="ActiveProctor2">Active Proctor (2nd course): </label>
+    
+                    <select name="ActiveProctor2" id="ActiveProctor2" >
+                        <option selected value="<%= proctor.ActiveProctor %>"><%= proctor.ActiveProctor %></option>
+                        <option value="No Course">No Course</option>
                       <option value="<%= proctor.Proctor1fullname %>"><%= proctor.Proctor1fullname %></option>
                       <option value="<%= proctor.Proctor2fullname %>"><%= proctor.Proctor2fullname %></option>
                         
