@@ -259,16 +259,23 @@ app.post('/passwordreset', function (req, res) {
                 var hashed=user.local.password;
                 var token = jwt.encode(payload, secret);
                 ////
-                var transporter = nodemailer.createTransport({
-                    service: 'gmail',
+                // var transporter = nodemailer.createTransport({
+                //     service: 'gmail',
+                //     auth: {
+                //     user: process.env.GOOGLE_EMAIL,
+                //     pass: process.env.GOOGLE_PW
+                //     }
+                // });
+                const transporter = nodemailer.createTransport({
+                    host: 'smtp.ethereal.email',
+                    port: 587,
                     auth: {
-                    user: process.env.GOOGLE_EMAIL,
-                    pass: process.env.GOOGLE_PW
+                        user: process.env.ETHEREAL_USER,
+                        pass: process.env.ETHEREAL_PW
                     }
                 });
-                
                 var mailOptions = {
-                    from: 'drewradley@gmail.com',
+                    from: process.env.ETHEREAL_USER,
                     to: emailAddress,
                     subject: 'OOMPH student password reset',
                     text: `Please follow this link to reset your password: https://warm-ridge-77429.herokuapp.com/resetpassword/${userID}/${token}/${hashed}`
