@@ -267,11 +267,11 @@ app.post('/passwordreset', function (req, res) {
                 //     }
                 // });
                 const transporter = nodemailer.createTransport({
-                    host: 'smtp.ethereal.email',
+                    host: 'smtpout.secureserver.net',
                     port: 587,
                     auth: {
-                        user: process.env.ETHEREAL_USER,
-                        pass: process.env.ETHEREAL_PW
+                        user: process.env.USER,
+                        pass: process.env.PASSWORD
                     }
                 });
                 var mailOptions = {
