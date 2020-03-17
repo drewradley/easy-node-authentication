@@ -2,7 +2,7 @@ const fs = require('fs');
 
 module.exports = {
     addPlayerPage: (req, res) => {
-        console.log('addPlayerPage')
+        console.log("!!!!!!!!!!!"+req.user.local.email)
         if(req.user.local.email=='drewradley@gmail.com' || req.user.local.email=='juliecmoss@berkeley.edu' || req.user.local.email=='sph.digital.learning@berkeley.edu'){
 
             res.render('add-player.ejs', {

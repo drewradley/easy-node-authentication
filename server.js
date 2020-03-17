@@ -11,6 +11,7 @@ var passport = require('passport');
 var flash    = require('connect-flash');
 const mysql = require('mysql');
 const path = require('path');
+const jwt = require('jwt-simple');
 
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -23,6 +24,7 @@ var helmet = require('helmet');
 
 const {getHomePage} = require('./routes/index');
 const {addPlayerPage, addPlayer, deletePlayer, editPlayer, editPlayerPage} = require('./routes/player');
+var nodemailer = require('nodemailer'); 
 
 require('dotenv').config({ path: '.env.local' });
   
@@ -74,7 +76,7 @@ var db_config = {
   };
   handleDisconnect();
   const ensureAuthenticated = (req, res, next) => {
-    console.log(req.user.local.email)
+    console.log("server.js line 78 "+req.user.local.email)
     req.isAuthenticated() ? next() : res.sendStatus(401)
   };
   
@@ -98,7 +100,7 @@ var db_config = {
     });                                     // process asynchronous requests in the meantime.
                                             // If you're also serving http, display a 503 error.
     connection.on('error', function(err) {
-      console.log('db error', err);
+      //console.log('db error', err);
       if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
         handleDisconnect();                         // lost due to either server restart, or a
       } else {                                      // connnection idle timeout (the wait_timeout
