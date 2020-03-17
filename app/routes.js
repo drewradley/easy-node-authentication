@@ -278,8 +278,8 @@ app.post('/passwordreset', function (req, res) {
                     from: process.env.USER,
                     to: emailAddress,
                     subject: 'OOMPH student password reset',
-                    //text: `Please follow this link to reset your password: https://warm-ridge-77429.herokuapp.com/resetpassword/${userID}/${token}/${hashed}`
-                    text: `Please follow this link to reset your password: http://localhost:8080/resetpassword/${userID}/${token}/${hashed}`
+                    text: `Please follow this link to reset your password: https://warm-ridge-77429.herokuapp.com/resetpassword/${userID}/${token}/${hashed}`
+                    //text: `Please follow this link to reset your password: http://localhost:8080/resetpassword/${userID}/${token}/${hashed}`
                 };
                 
                 transporter.sendMail(mailOptions, function(error, info){
