@@ -275,7 +275,7 @@ app.post('/passwordreset', function (req, res) {
                     }
                 });
                 var mailOptions = {
-                    from: process.env.USER,
+                    from: 'sph.digital.learning@berkeley.edu',
                     to: emailAddress,
                     subject: 'OOMPH student password reset',
                     text: `Please follow this link to reset your password: https://warm-ridge-77429.herokuapp.com/resetpassword/${userID}/${token}/${hashed}`
