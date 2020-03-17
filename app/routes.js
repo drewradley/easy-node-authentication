@@ -257,6 +257,8 @@ app.post('/passwordreset', function (req, res) {
                     email: emailAddress
                 };
                 var hashed=user.local.password;
+                var originalString = hashed; 
+                var newString = originalString.replace('/', ''); 
                 var token = jwt.encode(payload, secret);
                 ////
                 // var transporter = nodemailer.createTransport({
@@ -278,7 +280,7 @@ app.post('/passwordreset', function (req, res) {
                     from: process.env.USER,
                     to: emailAddress,
                     subject: 'OOMPH student password reset',
-                    text: `Please follow this link to reset your password: https://warm-ridge-77429.herokuapp.com/resetpassword/${userID}/${token}/${hashed}`
+                    text: `Please follow this link to reset your password: https://warm-ridge-77429.herokuapp.com/resetpassword/${userID}/${token}/${newString}`
                     //text: `Please follow this link to reset your password: http://localhost:8080/resetpassword/${userID}/${token}/${hashed}`
                 };
                 
@@ -334,9 +336,11 @@ app.get('/resetpassword/:id/:token/:hashed', function(req, res) {
         if (user) {
             console.log("MongoDB user: "+user.local.email)
             secret=user.local.password;
+            var originalString = secret; 
+                var newString = originalString.replace('/', ''); 
             console.log("MongoDB secret: "+secret)
             console.log("hashed"+req.params.hashed)
-            if(secret==req.params.hashed)
+            if(newString==req.params.hashed)
             {
                 res.send('<form action="/resetpassword" method="POST">' +
                 '<input type="hidden" name="id" value="' + req.params.id + '" />' +
